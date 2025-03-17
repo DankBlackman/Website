@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Blood Donation</title>
+    <script>
+        function showSignup() {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('signup-container').classList.remove('hidden');
+        }
+        function showLogin() {
+            document.getElementById('signup-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+        }
+        function showHome() {
+            document.getElementById('login-container').classList.add('hidden');
+            document.getElementById('signup-container').classList.add('hidden');
+            document.getElementById('home-container').classList.remove('hidden');
+            document.getElementById('donate-container').classList.add('hidden');
+            document.getElementById('search-container').classList.add('hidden');
+            document.getElementById('about-container').classList.add('hidden');
+        }
+        function showDonateBlood() {
+            document.getElementById('home-container').classList.add('hidden');
+            document.getElementById('donate-container').classList.remove('hidden');
+        }
+        function showLookForDonor() {
+            document.getElementById('home-container').classList.add('hidden');
+            document.getElementById('search-container').classList.remove('hidden');
+        }
+        function showAboutUs() {
+            document.getElementById('home-container').classList.add('hidden');
+            document.getElementById('about-container').classList.remove('hidden');
+        }
+        function logout() {
+            document.getElementById('home-container').classList.add('hidden');
+            document.getElementById('login-container').classList.remove('hidden');
+        }
+        function validateDonateForm() {
+            const bloodGroup = document.getElementById('donate-blood-group').value.trim();
+            const area = document.getElementById('donate-area').value.trim();
+            const age = document.getElementById('donate-age').value.trim();
+
+            if (!bloodGroup || !area || !age) {
+                alert("All fields are required.");
+                return false;
+            }
+            if (isNaN(age) || age <= 0) {
+                alert("Please enter a valid age.");
+                return false;
+            }
+            alert("Thank you for donating blood!");
+            showHome();
+            return true;
+        }
+        function validateSearchForm() {
+            const bloodGroup = document.getElementById('search-blood-group').value.trim();
+            const area = document.getElementById('search-area').value.trim();
+
+            if (!bloodGroup || !area) {
+                alert("All fields are required.");
+                return false;
+            }
+            alert("We will connect you to a user who has the same blood group.");
+            showHome();
+            return true;
+        }
+        function validateSignupForm() {
+            const name = document.querySelector('#signup-container input[type="text"]').value.trim();
+            const email = document.querySelector('#signup-container input[type="email"]').value.trim();
+            const phone = document.querySelector('#signup-container input[type="tel"]').value.trim();
+            const bloodGroup = document.querySelector('#signup-container input[type="text"]:nth-child(4)').value.trim();
+
+            if (!name || !email || !phone || !bloodGroup) {
+                alert("All fields are required.");
+                return false;
+            }
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!email.match(emailPattern)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (isNaN(phone) || phone.length < 10) {
+                alert("Please enter a valid phone number.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <link rel="stylesheet" href="Yes.css">
+</head>
+<body>
+    <div id="login-container" class="container">
+        <h2>Blood Donation Login</h2>
+        <input type="text" placeholder="Name" required><br><br>
+        <input type="password" placeholder="Password" required><br><br>
+        <button class="login-btn" onclick="showHome()">Login</button>
+        <button class="signup-btn" onclick="showSignup()">Sign Up</button>
+    </div>
+
+    <div id="signup-container" class="container hidden">
+        <h2>Signup for Blood Donation</h2>
+        <input type="text" placeholder="Name" required><br><br>
+        <input type="email" placeholder="Email" required><br><br>
+        <input type="tel" placeholder="Phone Number" required><br><br>
+        <input type="text" placeholder="Blood Group" required><br><br>
+        <button class="signup-btn" onclick="if(validateSignupForm()) { showHome(); }">Signup</button>
+        <button onclick="showLogin()">Back to Login</button>
+    </div>
+
+    <div id="home-container" class="hidden">
+        <div class="navbar">
+            <div>
+                <a href="#" onclick="showHome()">Home</a>
+                <a href="#" onclick="showAboutUs()">About Us</a>
+            </div>
+            <input type="text" placeholder="Search...">
+            <a href="#" onclick="logout()">Logout</a>
+        </div>
+        <div class="container">
+            <h2>Blood Donor</h2>
+            <button class="red-btn" onclick="showDonateBlood()">Donate Blood</button>
+            <button class="blue-btn" onclick="showLookForDonor()">Look for Donor</button>
+        </div>
+    </div>
+
+    <div id="donate-container" class="container hidden">
+        <h2>Donate Blood</h2>
+        <input type="text" id="donate-blood-group" placeholder="Blood Group" required><br><br>
+        <input type="text" id="donate-area" placeholder="Area" required><br><br>
+        <input type="number" id="donate-age" placeholder="Age" required><br><br>
+        <button class="submit-btn" onclick="if(validateDonateForm()) { showHome(); }">Submit</button>
+        <button class="back-btn" onclick="showHome()">Back</button>
+    </div>
+
+    <div id="search-container" class="container hidden">
+        <h2>Look for Donor</h2>
+        <input type="text" id="search-blood-group" placeholder="Blood Group" required><br><br>
+        <input type="text" id="search-area" placeholder="Area" required><br><br>
+        <button class="search-btn" onclick="if(validateSearchForm()) { showHome(); }">Search</button>
+        <button class="back-btn" onclick="showHome()">Back</button>
+    </div>
+
+    <div id="about-container" class="container hidden">
+        <h2>About Us</h2>
+        <p><strong>Created:</strong> 2025</p>
+        <p><strong>Purpose:</strong> Saving lives</p>
+        <p><strong>Email:</strong> blooddonor@gmail.com</p>
+        <p><strong>Helpline:</strong> 01xxxxxxxxx</p>
+        <button onclick="showHome()">Back</button>
+    </div>
+</body>
+</html>
