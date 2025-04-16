@@ -49,7 +49,7 @@ function validateLogin() {
         showHome();
         return true;
     } else {
-        alert("Wrong credentials. Please try again.");
+        alert("Wrong Username or Password. Please try again.");
         return false;
     }
 }
