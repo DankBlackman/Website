@@ -12,7 +12,7 @@ function validateSignupForm() {
         alert("Please enter a valid email address.");
         return false;
     }
-    if (isNaN(phone) || phone.length < 12) {
+    if (isNaN(phone) || phone.length < 11) {
         alert("Please enter a valid phone number.");
         return false;
     }
@@ -111,25 +111,8 @@ function validateSearchForm() {
     showHome();
     return true;
 }
-function validateSignupForm() {
-    const name = document.querySelector('#signup-container input[type="text"]').value.trim();
-    const email = document.querySelector('#signup-container input[type="email"]').value.trim();
-    const phone = document.querySelector('#signup-container input[type="tel"]').value.trim();
-    const bloodGroup = document.querySelector('#signup-container input[type="text"]:nth-child(4)').value.trim();
-
-    if (!name || !email || !phone || !bloodGroup) {
-        alert("All fields are required.");
-        return false;
-    }
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!email.match(emailPattern)) {
-        alert("Please enter a valid email address.");
-        return false;
-    }
-    if (isNaN(phone) || phone.length < 10) {
-        alert("Please enter a valid phone number.");
-        return false;
-    }
-
-    return true;
+function showSignup() {
+    document.getElementById('login-container').classList.add('hidden');
+    document.getElementById('signup-container').classList.remove('hidden');
 }
+
