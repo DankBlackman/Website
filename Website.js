@@ -33,6 +33,27 @@ function validateSignupForm() {
     return true;
 }
 
+function validateLogin() {
+    const nameInput = document.querySelector('#login-container input[placeholder="Name"]').value.trim();
+    const passwordInput = document.querySelector('#login-container input[placeholder="Password"]').value.trim();
+
+    const storedData = localStorage.getItem("userData");
+    if (!storedData) {
+        alert("No user signed up yet.");
+        return false;
+    }
+    const userData = JSON.parse(storedData);
+
+    if (userData.name === nameInput && userData.password === passwordInput) {
+        alert("Login successful!");
+        showHome();
+        return true;
+    } else {
+        alert("Wrong credentials. Please try again.");
+        return false;
+    }
+}
+
 function showLogin() {
     document.getElementById('signup-container').classList.add('hidden');
     document.getElementById('login-container').classList.remove('hidden');
