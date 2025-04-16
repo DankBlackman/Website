@@ -1,7 +1,38 @@
-function showSignup() {
-    document.getElementById('login-container').classList.add('hidden');
-    document.getElementById('signup-container').classList.remove('hidden');
+function validateSignupForm() {
+    const name = document.querySelector('#signup-container input[placeholder="Name"]').value.trim();
+    const email = document.querySelector('#signup-container input[placeholder="Email"]').value.trim();
+    const phone = document.querySelector('#signup-container input[placeholder="Phone Number"]').value.trim();
+    const bloodGroup = document.querySelector('#signup-container input[placeholder="Blood Group"]').value.trim();
+    if (!name || !email || !phone || !bloodGroup) {
+        alert("All fields are required.");
+        return false;
+    }
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+    if (isNaN(phone) || phone.length < 12) {
+        alert("Please enter a valid phone number.");
+        return false;
+    }
+    const password = prompt("Create a password:");
+    if (!password || password.length < 6) {
+        alert("Password must be at least 4 characters.");
+        return false;
+    }
+    const userData = {
+        name,
+        email,
+        phone,
+        bloodGroup,
+        password
+    };
+    localStorage.setItem("userData", JSON.stringify(userData));
+    alert("Signup successful!");
+    return true;
 }
+
 function showLogin() {
     document.getElementById('signup-container').classList.add('hidden');
     document.getElementById('login-container').classList.remove('hidden');
