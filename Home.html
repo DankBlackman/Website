@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Blood Donation</title>
+    <link rel="stylesheet" href="Website.css">
+    <script src="Website.js" defer></script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="Home.html">Home</a>
+        <a href="DonateBlood.html">Donate Blood</a>
+        <a href="ReceiveBlood.html">Look for Donor</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+    <div class="container">
+        <h2>Welcome Back, <span id="user-name">User</span>!</h2>
+    </div>
+
+    <!-- Dialogflow Chatbot -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+      intent="WELCOME"
+      chat-title="BloodDonationBot"
+      agent-id="5542f7e7-0185-488b-9612-d14cfd300eff"
+      language-code="en"
+    ></df-messenger>
+</body>
+</html>
