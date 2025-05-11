@@ -10,19 +10,27 @@
         <a href="Home.html">Home</a>
         <a href="DonateBlood.html">Donate Blood</a>
         <a href="ReceiveBlood.html">Look for Donor</a>
+        <a href="Forum.html">Forum</a>
         <a href="#" onclick="logout()">Logout</a>
     </div>
+
     <div class="container">
         <h2>Welcome Back, <span id="user-name">User</span>!</h2>
     </div>
 
-    <!-- Dialogflow Chatbot -->
+    <div id="popup-container" class="popup-container hidden">
+        <div class="popup-message" id="popup-message">
+            <span id="popup-text"></span>
+            <button class="close-btn" onclick="closePopup()">×</button>
+        </div>
+    </div>
+
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
     <df-messenger
-      intent="WELCOME"
-      chat-title="BloodDonationBot"
-      agent-id="5542f7e7-0185-488b-9612-d14cfd300eff"
-      language-code="en"
+        intent="WELCOME"
+        chat-title="BloodDonationBot"
+        agent-id="5542f7e7-0185-488b-9612-d14cfd300eff"
+        language-code="en"
     ></df-messenger>
 </body>
 </html>
